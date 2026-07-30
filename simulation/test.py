@@ -1,14 +1,11 @@
-from impact_simulator import simulate_impact  
-from impact_simulator import get_priority
+from impact_analysis import analyze_lab
 
-simulate_impact(
+analyze_lab(
 
     total_computers=40,
 
-    predicted_failed=8,
+    critical_computers=8,
 
     students=38
 
 )
-
-print(get_priority(8))

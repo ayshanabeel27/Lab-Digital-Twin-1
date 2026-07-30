@@ -21,16 +21,4 @@ def simulate_impact(total_computers, predicted_failed, students):
             f"❌ {affected_students} students will be affected"
         )
 
-def get_priority(predicted_failed):
-
-    if predicted_failed <= 2:
-
-        return "Low Priority"
-
-    elif predicted_failed <= 5:
-
-        return "Medium Priority"
-
-    else:
-
-        return "High Priority"
+    
