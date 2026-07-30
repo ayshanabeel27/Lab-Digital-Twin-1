@@ -7,4 +7,3 @@ def calculate_health(cpu, ram, temp):
     score -= temp * 0.5
 
     return max(score, 0)
-    print(calculate_health(20,30,40))
