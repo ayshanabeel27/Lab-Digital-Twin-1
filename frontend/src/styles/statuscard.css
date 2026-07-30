@@ -1,0 +1,15 @@
+.status-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 180px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.status-card h3 {
+  margin: 0;
+}
+
+.status-card h2 {
+  margin-top: 10px;
+}
