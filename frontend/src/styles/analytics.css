@@ -1,0 +1,28 @@
+.analytics-panel {
+  margin: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.analytics-panel h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.analytics-panel h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.analytics-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.analytics-row strong {
+  font-weight: bold;
+}
