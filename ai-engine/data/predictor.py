@@ -1,10 +1,14 @@
 import pickle
+import os
 
 from health_score import calculate_health
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 model = pickle.load(
-    open("model.pkl", "rb")
+    open(os.path.join(BASE_DIR, "model.pkl"), "rb")
 )
+
 
 def predict_health(cpu, ram, temp):
 
