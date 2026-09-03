@@ -1,10 +1,26 @@
 import json
 import time
+import urllib.request
 
 from collector import collect_telemetry
 
 
 INTERVAL_SECONDS = 5
+BACKEND_URL = "http://127.0.0.1:8000/telemetry"
+
+
+def send_telemetry(data):
+    payload = json.dumps(data).encode("utf-8")
+
+    request = urllib.request.Request(
+        BACKEND_URL,
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST"
+    )
+
+    with urllib.request.urlopen(request) as response:
+        return response.read().decode("utf-8")
 
 
 def main():
@@ -17,6 +33,10 @@ def main():
             data = collect_telemetry()
 
             print(json.dumps(data, indent=2))
+
+            response = send_telemetry(data)
+            print("Backend response:", response)
+
             print("-" * 60)
 
             time.sleep(INTERVAL_SECONDS)
@@ -26,7 +46,7 @@ def main():
             break
 
         except Exception as e:
-            print(f"Telemetry collection error: {e}")
+            print(f"Telemetry error: {e}")
             time.sleep(INTERVAL_SECONDS)
 
 
