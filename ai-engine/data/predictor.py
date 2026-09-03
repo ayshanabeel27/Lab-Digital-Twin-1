@@ -1,6 +1,7 @@
 import pickle
 import os
 
+from feature_extractor import extract_features
 from health_score import calculate_health
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -9,25 +10,28 @@ model = pickle.load(
     open(os.path.join(BASE_DIR, "model.pkl"), "rb")
 )
 
+def predict_health(data):
 
-def predict_health(cpu, ram, temp):
+    features = extract_features(data)
 
-    score = calculate_health(cpu, ram, temp)
+    predicted_score = model.predict(
+        [features]
+    )[0]
 
-    prediction = model.predict(
-        [[cpu, ram, temp]]
-    )
+    health_score = calculate_health(data)
 
-    if score > 80:
+    if health_score > 80:
         status = "Healthy"
 
-    elif score > 50:
+    elif health_score > 50:
         status = "Warning"
 
     else:
         status = "Critical"
 
     return {
-        "health_score": score,
+        "computer_id": data["computer_id"],
+        "health_score": round(health_score, 2),
+        "predicted_score": round(predicted_score, 2),
         "status": status
     }

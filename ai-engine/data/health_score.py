@@ -1,9 +1,11 @@
-def calculate_health(cpu, ram, temp):
+def calculate_health(data):
 
     score = 100
 
-    score -= cpu * 0.3
-    score -= ram * 0.2
-    score -= temp * 0.5
+    score -= data["cpu_pct"] * 0.20
+    score -= data["ram_pct"] * 0.15
+    score -= data["disk_pct"] * 0.10
 
-    return max(score, 0)
+    score -= min(data["process_count"], 200) * 0.05
+
+    return round(max(score, 0), 2)
